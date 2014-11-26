@@ -1,6 +1,6 @@
 This is our implementation of the [Netflix Chaos Monkey](http://techblog.netflix.com/2012/07/chaos-monkey-released-into-wild.html).
 
-The bot that connects to a random server through ssh, executes a random task and optionally warns you through [slack](http://slack.com).
+The bot connects to a random server through ssh, executes a random task and optionally warns you through [slack](http://slack.com).
 
 
 ## Installation
