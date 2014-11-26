@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var Connection = require('ssh2');
+var brain = require('../lib/brain');
+var mouth = require('../lib/mouth');
+
+function wait_and_exit () {
+  setTimeout(function () {
+    process.exit(0);
+  }, 5000);
+}
+
+function fumble () {
+  var action = brain.choose();
+  mouth.greet(action);
+
+  var conn = new Connection();
+  conn.on('ready', function() {
+    console.log('Connection :: ready');
+    conn.exec(action.task.cmd, function(err, stream) {
+      if (err) throw err;
+      stream.on('exit', function(code, signal) {
+        console.log('Process exit with code: ' + code + ', signal: ' + signal);
+        mouth.goodbye();
+        conn.end();
+        wait_and_exit();
+      }).on('data', function(data) {
+        mouth.server_says(data);
+      }).stderr.on('data', function(data) {
+        mouth.server_says(data);
+      });
+    });
+  }).connect(action.node.ssh_config);
+}
+
+fumble();
