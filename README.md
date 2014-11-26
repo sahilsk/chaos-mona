@@ -2,8 +2,6 @@ This is our implementation of the [Netflix Chaos Monkey](http://techblog.netflix
 
 The bot connects to a random server through ssh, executes a random task and optionally give notice through [slack](http://slack.com).
 
-The name comes from a famous [Cuarteto](http://en.wikipedia.org/wiki/Cuarteto) singer.
-
 ## Installation
 
 Install [node.js](http://nodejs.org/) then:
