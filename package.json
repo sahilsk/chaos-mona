@@ -1,14 +1,15 @@
 {
   "name": "chaos-mona",
-  "version": "0.0.0",
-  "description": "",
-  "bin": "./bin/monkey",
-  "author": "",
+  "version": "0.0.1",
+  "description": "A chaos-monkey bot implementation.",
+  "bin": {
+    "mona":"./bin/mona"
+  },
+  "author": "Jose F. Romaniello <jfromaniello@gmail.com> (http://jodeoncode.com)",
   "license": "MIT",
   "dependencies": {
-    "async": "^0.9.0",
+    "async": "~0.9.0",
     "js-yaml": "~3.0.1",
-    "node-slack": "0.0.5",
     "request": "~2.48.0",
     "ssh-config-parser": "0.0.0",
     "ssh2": "~0.3.6"

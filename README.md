@@ -1,13 +1,15 @@
 This is our implementation of the [Netflix Chaos Monkey](http://techblog.netflix.com/2012/07/chaos-monkey-released-into-wild.html).
 
-The bot connects to a random server through ssh, executes a random task and optionally warns you through [slack](http://slack.com).
+The bot connects to a random server through ssh, executes a random task and optionally give notice through [slack](http://slack.com).
 
+The name comes from a famous [Cuarteto](http://en.wikipedia.org/wiki/Cuarteto) singer.
 
 ## Installation
 
+Install [node.js](http://nodejs.org/) then:
+
 ~~~
-git clone git@github.com:auth0/chaos-monkey.git
-npm i
+npm i -g chaos-mona
 ~~~
 
 ## Configuration
@@ -86,7 +88,7 @@ The `ssh_config` part is optional, if you already have a `~/.ssh/config` file it
 
 Additional environment variables:
 
--  `SLACK_INCOMING_URL`: optional. The monkey will use this url to post messages to an slack channel.
+-  `SLACK_INCOMING_URL`: optional. Mona will use this url to post messages to an slack channel.
 -  `BRAIN_FILE`: optional. Path to the brain file, by default it is `brain_memory.yaml` on the root of the directory.
 
 ## Cron
@@ -94,10 +96,10 @@ Additional environment variables:
 This bot doesn't cron itself. You will need something like this:
 
 ```
-0 8-17/2 * * * sleep ${RANDOM:0:2}m ; /opt/chaos-monkey/bin/monkey
+0 8-17/2 * * * sleep ${RANDOM:0:2}m ; /usr/bin/env mona
 ```
 
-This will run the monkey every 2 hours, between 8 a.m. and 5 p.m., waiting a random amount of minutes before running it.
+This will run the mona every 2 hours, between 8 a.m. and 5 p.m., waiting a random amount of minutes before running it.
 
 ## License
 
