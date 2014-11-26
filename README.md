@@ -1,6 +1,6 @@
-This is our simpler implementation of the [Chaos Monkey](http://techblog.netflix.com/2012/07/chaos-monkey-released-into-wild.html).
+This is our implementation of the [Netflix Chaos Monkey](http://techblog.netflix.com/2012/07/chaos-monkey-released-into-wild.html).
 
-It is a daemon that screw things randomly on our infrastructure to ensure reliability.
+The bot that connects to a random server through ssh, executes a random task and optionally warns you through [slack](http://slack.com).
 
 
 ## Installation
@@ -88,6 +88,16 @@ Additional environment variables:
 
 -  `SLACK_INCOMING_URL`: optional. The monkey will use this url to post messages to an slack channel.
 -  `BRAIN_FILE`: optional. Path to the brain file, by default it is `brain_memory.yaml` on the root of the directory.
+
+## Cron
+
+This bot doesn't cron itself. You will need something like this:
+
+```
+0 8-17/2 * * * sleep ${RANDOM:0:2}m ; /opt/chaos-monkey/bin/monkey
+```
+
+This will run the monkey every 2 hours, between 8 a.m. and 5 p.m., waiting a random amount of minutes before running it.
 
 ## License
 
